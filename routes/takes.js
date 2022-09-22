@@ -4,4 +4,6 @@ const takesController = require('../controllers/takes')
 
 router.get('/', takesController.getTakes)
 
+router.post('/createTakes', takesController.createTakes)
+
 module.exports = router
