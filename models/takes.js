@@ -7,4 +7,4 @@ const takesSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('takes', takesSchema)
+module.exports = mongoose.model('Takes', takesSchema)
