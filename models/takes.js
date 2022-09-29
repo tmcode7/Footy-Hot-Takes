@@ -3,8 +3,12 @@ const mongoose = require('mongoose')
 const takesSchema = new mongoose.Schema({
   takes: {
     type: String,
-    required: true,
+    
+  },
+  likes: {
+    type: Number,
+    
   }
 })
 
-module.exports = mongoose.model('Takes', takesSchema)
+module.exports = mongoose.model('takes', takesSchema)

@@ -24,15 +24,18 @@ module.exports = {
 
     
 
-    addTake: (req, res) => {
-        db.collection('takes').insertOne({takeContent: req.body.hotTake,
-         likes: 0})
-        .then(result => {
-            console.log('Form Added')
-            response.redirect('/')
-        })
-        .catch(error => console.error(error))
+    addTake: async (req, res) => {
+        try{
+            await takes.create({takeContent: req.body.hotTake,
+                likes: 0})
+            console.log('Response Added')
+            res.redirect('/takes')
+        }catch(err){
+            console.log(err)
+        }    
     },
+
+    
     /*
    addOneLike: (req, res) => {
         db.collection('takes').updateOne({takeContent: req.body.hotTake, likes: req.body.likesS},{
