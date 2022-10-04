@@ -1,14 +1,16 @@
 const mongoose = require('mongoose')
 
 const takesSchema = new mongoose.Schema({
-  takes: {
+  takeContent: {
     type: String,
+    required: true,
+
     
   },
   likes: {
-    type: Number,
+    type: Number
     
   }
 })
 
-module.exports = mongoose.model('takes', takesSchema)
+module.exports = mongoose.model('Takes', takesSchema)

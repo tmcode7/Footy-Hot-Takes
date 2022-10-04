@@ -6,4 +6,6 @@ router.get('/', takesController.getTakes)
 
 router.post('/createTakes', takesController.addTake)
 
+router.delete('/deleteTakes', takesController.deleteTake)
+
 module.exports = router
