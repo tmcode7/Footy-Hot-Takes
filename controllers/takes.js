@@ -26,12 +26,11 @@ module.exports = {
     },
 
     deleteTake: async (req, res)=>{
-        console.log(req.body.todoIdFromJSFile)
+        console.log(req.body.takeIdFromJSFile)
         try{
-            await takes.deleteOne({takeContent: req.body.hotTake})
-            console.log('Deleted Todo')
+            await Takes.findOneAndDelete({_id:req.body.takeIdFromJSFile})
+            console.log('Deleted Take')
             res.json('Deleted It')
-            res.redirect('/takes')
         }catch(err){
             console.log(err)
         }
