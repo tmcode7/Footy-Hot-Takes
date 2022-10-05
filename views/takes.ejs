@@ -25,7 +25,8 @@
             <% takeContent.forEach( el => { %>
                 <li class='takesItem' data-id='<%=el._id%>'>
                     <span class=''><%= el.takeContent %></span>
-                    <span><%= el.likes %></span>
+                    <span class="likes"><%= el.likes %> Likes </span>
+                    <span class="dislikes"><%= el.dislikes %> Dislikes </span>
                     <span class='del'>Delete</span>
                 </li>
             <% }) %>    

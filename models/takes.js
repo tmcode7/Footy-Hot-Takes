@@ -8,8 +8,12 @@ const takesSchema = new mongoose.Schema({
     
   },
   likes: {
-    type: Number
+    type: Number,
+    required: true,
     
+  },
+  dislikes: {
+    type: Number
   }
 })
 

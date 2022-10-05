@@ -1,17 +1,17 @@
 const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('span.not')
-const todoComplete = document.querySelectorAll('span.completed')
+const takeLike = document.querySelectorAll('span.likes')
+const takeDislike = document.querySelectorAll('span.dislikes')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTake)
 })
 
-Array.from(todoItem).forEach((el)=>{
-    el.addEventListener('click', markComplete)
+Array.from(takeLike).forEach((el)=>{
+    el.addEventListener('click', likeTake)
 })
 
-Array.from(todoComplete).forEach((el)=>{
-    el.addEventListener('click', markIncomplete)
+Array.from(takeDislike).forEach((el)=>{
+    el.addEventListener('click', dislikeTake)
 })
 
 async function deleteTake(){
@@ -32,32 +32,37 @@ async function deleteTake(){
     }
 }
 
-async function markComplete(){
-    const todoId = this.parentNode.dataset.id
+async function likeTake(){
+   
+    const takeId = Number(this.parentNode.dataset.id)
+    console.log('liked')
+    
     try{
-        const response = await fetch('todos/markComplete', {
+        const response = await fetch('takes/likeTake', {
             method: 'put',
-            headers: {'Content-type': 'application/json'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'takeIdFromJSFile': takeId
             })
-        })
+          })
         const data = await response.json()
         console.log(data)
         location.reload()
+
     }catch(err){
         console.log(err)
     }
 }
 
-async function markIncomplete(){
-    const todoId = this.parentNode.dataset.id
+
+async function dislikeTake(){
+    const takeId = this.parentNode.dataset.id
     try{
-        const response = await fetch('todos/markIncomplete', {
+        const response = await fetch('takes/dislikeTake', {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'takeIdFromJSFile': takeId
             })
         })
         const data = await response.json()

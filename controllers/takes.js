@@ -5,8 +5,7 @@ module.exports = {
     getTakes: async (req,res)=>{
         try{
             const takesList = await Takes.find()
-            const likesCount = await Takes.find({likes: req.body.likes})
-            res.render('takes.ejs', {takeContent: takesList, likes: likesCount})
+            res.render('takes.ejs', {takeContent: takesList, likes: req.body.likes, dislikes: req.body.dislikes})
         }catch(err){
             console.log(err)
         }
@@ -34,7 +33,43 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-    }
+    },
+
+    likeTake: async (req, res)=>{
+        console.log(req.body.takeIdFromJSFile)
+        try{
+            await Takes.findOneAndUpdate( {_id:req.body.takeIdFromJSFile},{
+                
+                    likes:req.body.takeIdFromJSFile += 1
+                
+            },)
+            console.log('liked Take')
+            res.json('liked It')
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+
+   
+
+
+    
+
+    dislikeTake: async (req, res)=>{
+        console.log(req.body.takeIdFromJSFile)
+        try{
+            await Takes.findOneAndUpdate({dislikes:req.body.dislikesS}, {
+                $set: {
+                    dislikes:request.body.dislikesS + 1
+                  }
+            })
+            console.log('Disliked Take')
+            res.json('Disliked It')
+        }catch(err){
+            console.log(err)
+        }
+    },
 
     
 
