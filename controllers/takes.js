@@ -4,8 +4,9 @@ module.exports = {
 
     getTakes: async (req,res)=>{
         try{
-            const takesList = await Takes.find()
-            res.render('takes.ejs', {takeContent: takesList, likes: req.body.likes, dislikes: req.body.dislikes})
+            const takesList = await Takes.find({userId:req.user.id})
+            res.render('takes.ejs', {takeContent: takesList, likes: req.body.likes, dislikes: req.body.dislikes, user: req.user})
+            console.log(req.user)
         }catch(err){
             console.log(err)
         }
@@ -16,7 +17,7 @@ module.exports = {
     addTake: async (req, res) => {
         try{
             await Takes.create({takeContent: req.body.hotTake,
-                likes: 0})
+                likes: 0, userId: req.user.id})
             console.log('Response Added')
             res.redirect('/takes')
         }catch(err){
@@ -52,10 +53,6 @@ module.exports = {
 
 
    
-
-
-    
-
     dislikeTake: async (req, res)=>{
         console.log(req.body.takeIdFromJSFile)
         try{

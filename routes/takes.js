@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const takesController = require('../controllers/takes')
+const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', takesController.getTakes)
+router.get('/', ensureAuth,  takesController.getTakes)
 
 router.post('/createTakes', takesController.addTake)
 
